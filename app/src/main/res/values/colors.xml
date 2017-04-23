@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#673AB7</color>
+    <color name="colorPrimaryDark">#512DA8</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- Background color for app -->
+    <!--<color name="tan_background">#FFF7DA</color> -->
+    <color name="tan_background">#CFD8DC</color>
+
+    <!-- Text color for the details of the earthquake in the list item -->
+    <color name="textColorTitle">#000000</color>
+
+    <!-- Text color for the primary location of the earthquake in the list item -->
+    <color name="textColorAuthor">#455A64</color>
+</resources>

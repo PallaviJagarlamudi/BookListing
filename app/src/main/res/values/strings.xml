@@ -1,0 +1,14 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" >
+    <string name="app_name">BookListing</string>
+
+    <string name="req_method_get">GET</string>
+
+    <string name="no_books">No matching books</string>
+    <string name="no_network_conn">No internet connection</string>
+    <string name="no_author">No author details</string>
+
+    <string name="hint_keyword">Search keyword</string>
+    <string name="keyword_no_entered">Enter keyword and search</string>
+
+    <string name="google_api_query">https://www.googleapis.com/books/v1/volumes?q=title:<xliff:g id="keyword" example="Harry">%s </xliff:g></string>
+</resources>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/itemView"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height"
+    android:paddingLeft="@dimen/listitem_layout_sides_padding"
+    android:paddingRight="@dimen/listitem_layout_sides_padding"
+    android:paddingBottom="@dimen/listitem_layout_padding"
+    android:paddingTop="@dimen/listitem_layout_padding"
+    android:background="@color/tan_background">
+
+    <ImageView
+        android:id="@+id/coverImageView"
+        android:layout_width="@dimen/list_item_width"
+        android:layout_height="@dimen/list_item_height"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:id="@+id/textLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/coverImageView"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/list_item_padiing">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top"
+            android:textSize="12sp"
+            android:textColor="@color/textColorAuthor"/>
+    </LinearLayout>
+</RelativeLayout>
