@@ -8,7 +8,7 @@
     <string name="no_author">No author details</string>
 
     <string name="hint_keyword">Search keyword</string>
+    <string name="search">Search</string>
     <string name="keyword_no_entered">Enter keyword and search</string>
 
-    <string name="google_api_query">https://www.googleapis.com/books/v1/volumes?q=title:<xliff:g id="keyword" example="Harry">%s </xliff:g></string>
 </resources>

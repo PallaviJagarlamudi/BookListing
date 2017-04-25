@@ -136,7 +136,7 @@ public class QueryUtils {
      */
     private static List<GoogleBook> extractVolumeInfoFromJson(String GoogleBookJSON) {
 
-        ArrayList<GoogleBook> GoogleBooks = new ArrayList<>();
+        ArrayList<GoogleBook> googleBooks = new ArrayList<>();
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(GoogleBookJSON)) {
             return null;
@@ -170,9 +170,9 @@ public class QueryUtils {
                     }
                 }
 
-                GoogleBooks.add(new GoogleBook(title, authors,  imageUrl));
+                googleBooks.add(new GoogleBook(title, authors,  imageUrl));
             }
-            return GoogleBooks;
+            return googleBooks;
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Problem parsing the GoogleBook JSON results", e);
         }

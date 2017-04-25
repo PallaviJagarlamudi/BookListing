@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,9 +20,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BooklistActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<GoogleBook>>{
+public class BookListActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<GoogleBook>>{
     /** URL for earthquake data from the USGS dataset */
     private static final int BOOK_LOADER_ID = 1;
+    private static final String GOOGLE_API_URL = "https://www.googleapis.com/books/v1/volumes?q=title:";
     private GoogleBookAdapter mAdapter;
     private TextView mEmptyStateTextView;
     private ProgressBar mProgressBar;
@@ -52,12 +54,13 @@ public class BooklistActivity extends AppCompatActivity implements LoaderManager
             public void onClick(View view) {
                 
                 mAdapter.clear();
+                mEmptyStateTextView.setText("");
 
                 EditText keywordView = (EditText) findViewById(R.id.keywordText);
                 searchKeyword = keywordView.getText().toString();
 
                 if( TextUtils.isEmpty(searchKeyword) || searchKeyword == null ){
-                    Toast.makeText(BooklistActivity.this, getString(R.string.keyword_no_entered), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BookListActivity.this, getString(R.string.keyword_no_entered), Toast.LENGTH_SHORT).show();
                 }else{
                     ConnectivityManager cm =(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
@@ -68,9 +71,9 @@ public class BooklistActivity extends AppCompatActivity implements LoaderManager
                         mProgressBar.setIndeterminate(true);
                         mProgressBar.setVisibility(View.VISIBLE);
                         if(loaderManager.getLoader(BOOK_LOADER_ID) == null){
-                            loaderManager.initLoader(BOOK_LOADER_ID, null,BooklistActivity.this).forceLoad();
+                            loaderManager.initLoader(BOOK_LOADER_ID, null,BookListActivity.this).forceLoad();
                         }else{
-                            loaderManager.restartLoader(BOOK_LOADER_ID, null,BooklistActivity.this).forceLoad();
+                            loaderManager.restartLoader(BOOK_LOADER_ID, null,BookListActivity.this).forceLoad();
                         }
                     }else {
                         mEmptyStateTextView.setText(R.string.no_network_conn);
@@ -81,7 +84,7 @@ public class BooklistActivity extends AppCompatActivity implements LoaderManager
         });
 
         if(loaderManager.getLoader(BOOK_LOADER_ID) != null) {
-            loaderManager.initLoader(BOOK_LOADER_ID, null, BooklistActivity.this).forceLoad();
+            loaderManager.initLoader(BOOK_LOADER_ID, null, BookListActivity.this).forceLoad();
         }else{
             mEmptyStateTextView.setText(R.string.keyword_no_entered);
         }
@@ -89,11 +92,14 @@ public class BooklistActivity extends AppCompatActivity implements LoaderManager
 
     @Override
     public Loader<List<GoogleBook>> onCreateLoader(int id, Bundle args) {
-        if ( searchKeyword == null || searchKeyword.equals("")){
+        if ( searchKeyword == null || searchKeyword.isEmpty()){
             return null;
         }
-        String apiQuery = getString(R.string.google_api_query,searchKeyword.toLowerCase().trim().replace(" ","+"));
-        return new BookLoader(this, apiQuery);
+
+        String formattedSearchKey = searchKeyword.toLowerCase().trim().replace(" ","+");
+        String apiQuery = GOOGLE_API_URL + formattedSearchKey;
+        Log.i("Test",apiQuery);
+        return new BookLoader(this, apiQuery.toString());
     }
 
     @Override

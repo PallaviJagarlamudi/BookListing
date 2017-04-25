@@ -31,7 +31,7 @@ public class GoogleBook {
 
 
     public boolean hasImage(){
-        if ( mImageUrl.equals("") || mImageUrl ==null){
+        if ( mImageUrl == null || mImageUrl.isEmpty()){
             return false;
         }else{
             return true;

@@ -41,16 +41,16 @@ public class GoogleBookAdapter extends ArrayAdapter<GoogleBook> {
         titleTextView.setText(currentBook.getTitle());
 
         ArrayList<String> authors = currentBook.getAuthor();
-        String authorList = "";
+        StringBuilder authorList = new StringBuilder();;
         if (!authors.isEmpty() && authors != null) {
             for (String s : currentBook.getAuthor()) {
-                authorList += s + "\n";
+                authorList.append(s + "\n");
             }
         } else {
-            authorList = getContext().getString(R.string.no_author);
+            authorList.append(getContext().getString(R.string.no_author));
         }
         TextView authorTextView = (TextView) listItemView.findViewById(R.id.author);
-        authorTextView.setText(authorList.trim());
+        authorTextView.setText(authorList.toString().trim());
 
         ImageView coverImageView = (ImageView) listItemView.findViewById(R.id.coverImageView);
         if (currentBook.hasImage()) {
